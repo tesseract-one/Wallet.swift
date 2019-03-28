@@ -26,7 +26,7 @@ Swift SDK for multi-network wallet implementation
     ss.dependency 'TesseractKeychain', '~> 0.0.1'
     ss.dependency 'SerializableValue', '~> 0.0.1'
     ss.dependency 'SQLite.swift', '~> 0.11.0'
-    ss.dependencw 'SQLiteMigrationManager.swift', '~> 0.5.0'
+    ss.dependency 'SQLiteMigrationManager.swift', '~> 0.5.0'
   end
 
   s.subspec 'Ethereum' do |ss|
