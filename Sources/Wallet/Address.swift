@@ -1,0 +1,37 @@
+//
+//  Address.swift
+//  Wallet
+//
+//  Created by Yehor Popovych on 3/28/19.
+//  Copyright © 2019 Tesseract Systems, Inc. All rights reserved.
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+import Foundation
+
+public struct Address: Codable, Equatable {
+    let index: UInt32
+    let address: Data
+    let network: Network
+    
+    public init(index: UInt32, address: Data, network: Network) {
+        self.index = index
+        self.address = address
+        self.network = network
+    }
+    
+    public static func == (lhs: Address, rhs: Address) -> Bool {
+        return lhs.index == rhs.index && lhs.address == rhs.address && lhs.network == rhs.network
+    }
+}
