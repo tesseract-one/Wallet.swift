@@ -98,3 +98,9 @@ extension Wallet: SignProvider {
         return associatedData[.isMetamask]?.bool ?? false
     }
 }
+
+extension Wallet {
+    public var ethereum: APIRegistry {
+        return APIRegistry(signProvider: self)
+    }
+}

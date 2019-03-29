@@ -65,16 +65,16 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   SerializableValue:
-    :commit: 64fdfaa9ba6baaf43021912ea3be193d435e5fa4
+    :commit: 10f23664e16c600002178cece070722c09e7b7c1
     :git: https://github.com/ypopovych/swift-serializable.git
   SQLite.swift:
     :commit: 1a34caff10c529ef7ed4fc1de6db819a1cd0bc6e
     :git: https://github.com/ottosuess/SQLite.swift.git
   TesseractEthereumBase:
-    :commit: 1bcc1bccd972eb99142c670fb0e3bc225c6ae5d3
+    :commit: 93f107649fb43f9ca34aa318df58fec593a6e8fa
     :git: "git@github.com:ypopovych/swift-ethereum-base.git"
   TesseractKeychain:
-    :commit: 4696cf5f3418742673589ced95d37cc6db0f10db
+    :commit: d16bb54c8a546c2dc9bfac4b75e5ba91a00459be
     :git: "git@github.com:ypopovych/swift-keychain.git"
 
 SPEC CHECKSUMS:
@@ -83,12 +83,12 @@ SPEC CHECKSUMS:
   CryptoSwift: 769f58a9e89f64e8796c2e59ce5f002dc81a2438
   PromiseKit: 94c6e781838c5bf4717677d0d882b0e7250c80fc
   secp256k1.swift: a7e7a214f6db6ce5db32cc6b2b45e5c4dd633634
-  SerializableValue: 3e44a12393f7bf8dfb08e9f804f9c7f749c13131
+  SerializableValue: 68b0bc3f578c45f99279bc0297213a57ec532663
   SipHash: fad90a4683e420c52ef28063063dbbce248ea6d4
   SQLite.swift: 7e42c4b88dc7a5d764fbd431001e6d8dc8c1cfce
   SQLiteMigrationManager.swift: 646cfccb9a446b3134d19dca7a5ec5437f82da76
-  TesseractEthereumBase: ad3ec9ec8560a464624a36e4fe99372d0ee8192b
-  TesseractKeychain: 0242d82b5d37f16c9c4f3a975dd55a9aaecbc3a9
+  TesseractEthereumBase: 46b03bf12a8381fa17849a49ab46b1a134c940fa
+  TesseractKeychain: 76854541e4da0759163a6b5f201fe8287911491e
 
 PODFILE CHECKSUM: d748131b0bff0cf7a1ff5d9220d8ed666f6206de
 
