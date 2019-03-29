@@ -20,7 +20,7 @@
 
 import Foundation
 import Keychain
-import EthereumBase
+@_exported import EthereumBase
 
 public extension Wallet.AssociatedKeys {
     static let isMetamask = Wallet.AssociatedKeys(rawValue: "isMetamask")

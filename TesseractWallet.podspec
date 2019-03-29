@@ -16,8 +16,6 @@ Swift SDK for multi-network wallet implementation
 
   s.ios.deployment_target = '10.0'
 
-  s.pod_target_xcconfig = { 'APPLICATION_EXTENSION_API_ONLY' => 'YES' }
-
   s.module_name = 'Wallet'
 
   s.subspec 'Core' do |ss|
@@ -40,7 +38,13 @@ Swift SDK for multi-network wallet implementation
     ss.source_files = 'Sources/PromiseKit/**/*.swift'
 
     ss.dependency 'TesseractWallet/Core'
-    ss.dependency 'PromiseKit', '~> 6.8.0'
+    ss.dependency 'PromiseKit/CorePromise', '~> 6.8.0'
+  end
+
+  s.subspec 'EthereumPromiseKit' do |ss|
+    ss.dependency 'TesseractWallet/Ethereum'
+    ss.dependency 'TesseractWallet/PromiseKit'
+    ss.dependency 'TesseractEthereumBase/PromiseKit', '~> 0.0.1'
   end
 
   s.default_subspecs = 'Core'
