@@ -37,7 +37,7 @@ public struct StorageQuery {
 }
 
 public protocol StorageProtocol {
-    typealias Response<Type> = (Result<Type, StorageError>) -> Void
+    typealias Response<Type> = (Swift.Result<Type, StorageError>) -> Void
     
     func listWalletIds(offset: Int, limit: Int, response: @escaping Response<[String]>)
     func hasWallet(id: String, response: @escaping Response<Bool>)

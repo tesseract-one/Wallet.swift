@@ -35,7 +35,7 @@ public extension Account {
 extension Account {
     func eth_signTx(
         isMetamask: Bool, tx: Transaction, chainId: UInt64,
-        response: @escaping (Result<Data, SignProviderError>) -> Void
+        response: @escaping (Swift.Result<Data, SignProviderError>) -> Void
     ) {
         DispatchQueue.global().async {
             do {
@@ -54,7 +54,7 @@ extension Account {
     
     func eth_signTypedData(
         isMetamask: Bool, data: TypedData,
-        response: @escaping (Result<Data, SignProviderError>) -> Void
+        response: @escaping (Swift.Result<Data, SignProviderError>) -> Void
     ) {
         DispatchQueue.global().async {
             do {
@@ -73,7 +73,7 @@ extension Account {
     
     func eth_signData(
         isMetamask: Bool, data: Data,
-        response: @escaping (Result<Data, SignProviderError>) -> Void
+        response: @escaping (Swift.Result<Data, SignProviderError>) -> Void
     ) {
         DispatchQueue.global().async {
             var signData = "\u{19}Ethereum Signed Message:\n".data(using: .utf8)!

@@ -65,13 +65,13 @@ public class Manager {
         return wallet
     }
     
-    public func has(wallet id: String,  response: @escaping (Result<Bool, Error>) -> Void) {
+    public func has(wallet id: String,  response: @escaping (Swift.Result<Bool, Error>) -> Void) {
         storage.hasWallet(id: id) { result in
             response(result.mapError { .storageError($0) })
         }
     }
     
-    public func load(with id: String, response: @escaping (Result<Wallet, Error>) -> Void) {
+    public func load(with id: String, response: @escaping (Swift.Result<Wallet, Error>) -> Void) {
         storage.loadWallet(id: id) { result in
             response(
                 result
@@ -87,19 +87,22 @@ public class Manager {
         }
     }
     
-    public func save(wallet: Wallet, response: @escaping (Result<Void, Error>) -> Void) {
+    public func save(wallet: Wallet, response: @escaping (Swift.Result<Void, Error>) -> Void) {
         storage.saveWallet(wallet: wallet.storageData) { result in
             response(result.mapError { .storageError($0) })
         }
     }
     
-    public func remove(walletId: String, response: @escaping (Result<Void, Error>) -> Void) {
+    public func remove(walletId: String, response: @escaping (Swift.Result<Void, Error>) -> Void) {
         storage.removeWallet(id: walletId) { result in
             response(result.mapError { .storageError($0) })
         }
     }
     
-    public func listWalletIds(offset: Int = 0, limit: Int = 10000, response: @escaping (Result<[String], Error>) -> Void) {
+    public func listWalletIds(
+        offset: Int = 0, limit: Int = 10000,
+        response: @escaping (Swift.Result<[String], Error>) -> Void
+    ) {
         storage.listWalletIds(offset: offset, limit: limit) { result in
             response(result.mapError { .storageError($0) })
         }
