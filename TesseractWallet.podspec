@@ -7,12 +7,12 @@ Pod::Spec.new do |s|
 Swift SDK for multi-network wallet implementation
                        DESC
 
-  s.homepage         = 'https://github.com/tesseract.1/swift-wallet-sdk'
+  s.homepage         = 'https://github.com/tesseract-one/swift-wallet-sdk'
 
   s.license          = { :type => 'Apache 2.0', :file => 'LICENSE' }
   s.author           = { 'Tesseract Systems, Inc.' => 'info@tesseract.one' }
-  s.source           = { :git => 'https://github.com/tesseract.1/swift-wallet-sdk.git', :tag => s.version.to_s }
-  s.social_media_url = 'https://twitter.com/tesseract_io'
+  s.source           = { :git => 'https://github.com/tesseract-one/swift-wallet-sdk.git', :tag => s.version.to_s }
+  s.social_media_url = 'https://twitter.com/tesseract_one'
 
   s.ios.deployment_target = '10.0'
 
