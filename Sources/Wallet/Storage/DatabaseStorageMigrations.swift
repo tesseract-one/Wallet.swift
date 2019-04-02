@@ -52,15 +52,19 @@ private struct InitialMigration: Migration {
     }
     
     private func createAddress(db: Connection) throws {
+        let index = Expression<Int64>("index")
         let network = Expression<Network>("network")
+        let accountId = Expression<String>("accountId")
         let table = Table("Address")
         try db.run(table.create { t in
-            t.column(Expression<Int64>("index"), primaryKey: true)
+            t.column(index)
             t.column(network)
             t.column(Expression<Blob>("address"))
-            t.column(Expression<String>("accountId"))
+            t.column(accountId)
             
-            t.foreignKey(Expression<String>("accountId"), references: accountTable, Expression<String>("id"), delete: .cascade)
+            t.primaryKey(index, network, accountId)
+            
+            t.foreignKey(accountId, references: accountTable, Expression<String>("id"), delete: .cascade)
         })
         try db.run(table.createIndex(network))
     }
