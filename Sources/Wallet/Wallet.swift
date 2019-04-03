@@ -97,7 +97,8 @@ public class Wallet {
         _accountsLock.lock()
         defer { _accountsLock.unlock() }
         let id = UUID().uuidString
-        let account = try Account(id: id, index: UInt32(accounts.count), networkSupport: networkSupport)
+        let index = accounts.reduce(0) { index, acc in max(acc.index, index) }
+        let account = try Account(id: id, index: index + 1, networkSupport: networkSupport)
         accounts.append(account)
         return account
     }
