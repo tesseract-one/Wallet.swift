@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		1CF989CDF4550966F06E7B55 /* Pods_Wallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79B118C368224ED0891A7641 /* Pods_Wallet.framework */; };
 		5DF284CD15A81E4E2C0667C5 /* Pods_WalletTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D94BF61834968E9EBA4216 /* Pods_WalletTests.framework */; };
+		926C5558226298F200D14851 /* KeychainTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926C5557226298F200D14851 /* KeychainTypes.swift */; };
+		926C555A2262C73300D14851 /* Keychain+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926C55592262C73300D14851 /* Keychain+Extension.swift */; };
+		926C555C226352C700D14851 /* Keychain+Ethereum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926C555B226352C700D14851 /* Keychain+Ethereum.swift */; };
 		927C5994224CFAAD00F2AA50 /* Wallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 927C598A224CFAAD00F2AA50 /* Wallet.framework */; };
 		927C5999224CFAAE00F2AA50 /* WalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927C5998224CFAAE00F2AA50 /* WalletTests.swift */; };
 		927C59ED224D1C8E00F2AA50 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927C59E4224D1C8D00F2AA50 /* Account.swift */; };
@@ -42,6 +45,9 @@
 		2C9708B66164C176EAED0934 /* Pods-Wallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallet.debug.xcconfig"; path = "Target Support Files/Pods-Wallet/Pods-Wallet.debug.xcconfig"; sourceTree = "<group>"; };
 		79B118C368224ED0891A7641 /* Pods_Wallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90D94BF61834968E9EBA4216 /* Pods_WalletTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalletTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		926C5557226298F200D14851 /* KeychainTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTypes.swift; sourceTree = "<group>"; };
+		926C55592262C73300D14851 /* Keychain+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+Extension.swift"; sourceTree = "<group>"; };
+		926C555B226352C700D14851 /* Keychain+Ethereum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+Ethereum.swift"; sourceTree = "<group>"; };
 		927C598A224CFAAD00F2AA50 /* Wallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Wallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		927C598E224CFAAD00F2AA50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		927C5993224CFAAD00F2AA50 /* WalletTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WalletTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,6 +134,8 @@
 				927C59E4224D1C8D00F2AA50 /* Account.swift */,
 				927C59E5224D1C8D00F2AA50 /* Storage.swift */,
 				927C59E7224D1C8D00F2AA50 /* Wallet.swift */,
+				926C5557226298F200D14851 /* KeychainTypes.swift */,
+				926C55592262C73300D14851 /* Keychain+Extension.swift */,
 				927C59E8224D1C8D00F2AA50 /* Manager.swift */,
 				927C59F7224D232200F2AA50 /* Network.swift */,
 				927C59E6224D1C8D00F2AA50 /* NetworkSupport.swift */,
@@ -179,6 +187,7 @@
 				927C5A2B224D34F000F2AA50 /* Wallet+Ethereum.swift */,
 				927C5A2D224D35E600F2AA50 /* Account+Ethereum.swift */,
 				927C5A31224D3C8E00F2AA50 /* NetworkSupport+Ethereum.swift */,
+				926C555B226352C700D14851 /* Keychain+Ethereum.swift */,
 			);
 			path = Ethereum;
 			sourceTree = "<group>";
@@ -219,6 +228,7 @@
 			buildPhases = (
 				7BAB9387543A976DC0026E6F /* [CP] Check Pods Manifest.lock */,
 				927C5985224CFAAD00F2AA50 /* Headers */,
+				926C55562262902300D14851 /* Build Rust Binary */,
 				927C5986224CFAAD00F2AA50 /* Sources */,
 				927C5987224CFAAD00F2AA50 /* Frameworks */,
 				927C5988224CFAAD00F2AA50 /* Resources */,
@@ -319,15 +329,12 @@
 				"${PODS_ROOT}/Target Support Files/Pods-WalletTests/Pods-WalletTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BigInt/BigInt.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/MnemonicKit/MnemonicKit.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLiteMigrationManager.swift/SQLiteMigrationManager.framework",
 				"${BUILT_PRODUCTS_DIR}/SerializableValue/Serializable.framework",
 				"${BUILT_PRODUCTS_DIR}/SipHash/SipHash.framework",
 				"${BUILT_PRODUCTS_DIR}/TesseractEthereumBase/EthereumBase.framework",
-				"${BUILT_PRODUCTS_DIR}/TesseractKeychain/Keychain.framework",
-				"${BUILT_PRODUCTS_DIR}/secp256k1.swift/secp256k1.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -335,15 +342,12 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BigInt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MnemonicKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLiteMigrationManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Serializable.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SipHash.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EthereumBase.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Keychain.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/secp256k1.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -394,6 +398,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		926C55562262902300D14851 /* Build Rust Binary */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build Rust Binary";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash ${SRCROOT}/Keychain/build.sh\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -406,6 +428,8 @@
 				927C59F1224D1C8E00F2AA50 /* Manager.swift in Sources */,
 				927C5A2E224D35E600F2AA50 /* Account+Ethereum.swift in Sources */,
 				927C5A2C224D34F000F2AA50 /* Wallet+Ethereum.swift in Sources */,
+				926C555A2262C73300D14851 /* Keychain+Extension.swift in Sources */,
+				926C555C226352C700D14851 /* Keychain+Ethereum.swift in Sources */,
 				927C59F4224D1C8E00F2AA50 /* DatabaseStorage.swift in Sources */,
 				927C59F0224D1C8E00F2AA50 /* Wallet.swift in Sources */,
 				927C5A32224D3C8E00F2AA50 /* NetworkSupport+Ethereum.swift in Sources */,
@@ -415,6 +439,7 @@
 				927C5A2A224D313F00F2AA50 /* Manager+PromiseKit.swift in Sources */,
 				927C59F2224D1C8E00F2AA50 /* DatabaseStorageTables.swift in Sources */,
 				927C59EE224D1C8E00F2AA50 /* Storage.swift in Sources */,
+				926C5558226298F200D14851 /* KeychainTypes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,9 +605,11 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/Keychain/";
 				PRODUCT_BUNDLE_IDENTIFIER = one.tesseract.Wallet;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -607,9 +634,11 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/Keychain/";
 				PRODUCT_BUNDLE_IDENTIFIER = one.tesseract.Wallet;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -1,0 +1,3 @@
+[submodule "Keychain/rust-keychain"]
+	path = Keychain/rust-keychain
+	url = https://github.com/tesseract-one/rust-keychain.git

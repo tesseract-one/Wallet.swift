@@ -36,33 +36,50 @@ public class Manager {
     public enum Error: Swift.Error {
         case storageError(StorageError)
         case serializationError(Swift.Error)
+        case initializationError(String)
     }
+    
+    private var manager: KeychainManagerPtr
     
     public private(set) var networks: Dictionary<Network, NetworkSupportFactory>
     public let storage: StorageProtocol
     
-    public init(networks: [NetworkSupportFactory], storage: StorageProtocol) {
+    public init(networks: [NetworkSupportFactory], storage: StorageProtocol) throws {
+        self.manager = try KeychainManagerPtr.new()
+        
         let tuple = networks.map { ($0.network, $0) }
         self.networks = Dictionary(uniqueKeysWithValues: tuple)
         self.storage = storage
     }
     
+    deinit {
+        manager.delete()
+    }
+    
     public func newWalletData(password: String) throws -> NewWalletData {
-        let mnemonic = try Keychain.generateMnemonic()
-        return try restoreWalletData(mnemonic: mnemonic, password: password)
+        return try restoreWalletData(mnemonic: manager.generateMnemonic(), password: password)
     }
     
     public func restoreWalletData(mnemonic: String, password: String) throws -> NewWalletData {
-        let data = try Keychain.fromMnemonic(mnemonic: mnemonic, password: password)
-        return NewWalletData(mnemonic: mnemonic, encrypted: data.encrypted)
+        var (keychain, encrypted) = try manager.keychain(mnemonic: mnemonic, password: password)
+        defer { keychain.delete() }
+        return NewWalletData(mnemonic: mnemonic, encrypted: encrypted)
     }
     
     public func create(from data: NewWalletData, password: String) throws -> Wallet {
         let id = UUID().uuidString
-        let wallet = Wallet(id: id, privateData: data.encrypted, networks: networks)
+        let wallet = Wallet(id: id, privateData: data.encrypted, manager: self)
         try wallet.unlock(password: password)
         _ = try wallet.addAccount()
         return wallet
+    }
+    
+    func keychain(data: Data, password: String) throws -> KeychainPtr {
+        return try manager.keychain(data: data, password: password)
+    }
+    
+    func changePassword(data: Data, oldPwd: String, newPwd: String) throws -> Data {
+        return try manager.changePassword(data: data, old: oldPwd, new: newPwd)
     }
     
     public func has(wallet id: String,  response: @escaping (Swift.Result<Bool, Error>) -> Void) {
@@ -78,7 +95,7 @@ public class Manager {
                 .mapError{ .storageError($0) }
                 .flatMap { data in
                     do {
-                        return try .success(Wallet(data: data, networks: self.networks))
+                        return try .success(Wallet(data: data, manager: self))
                     } catch let err {
                         return .failure(.serializationError(err))
                     }

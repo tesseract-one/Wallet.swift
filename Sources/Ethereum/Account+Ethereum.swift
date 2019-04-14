@@ -28,7 +28,7 @@ public extension Account {
         if let ethAddrs = addresses[.Ethereum] {
             return try EthereumBase.Address(rawAddress: ethAddrs[0].address)
         }
-        throw Keychain.Error.networkIsNotSupported(.Ethereum)
+        throw KeychainError.networkIsNotSupported(.Ethereum)
     }
 }
 
@@ -39,12 +39,10 @@ extension Account {
     ) {
         DispatchQueue.global().async {
             do {
-                let keychain = try self.eth_keychain()
+                var keychain = try self.eth_keychain()
+                let txData = try tx.rawData(chainId: BigUInt(chainId))
                 try response(.success(
-                    keychain.sign(
-                        network: .Ethereum,
-                        data: tx.rawData(chainId: BigUInt(chainId)),
-                        path: self.keyPath(isMetamask))
+                    keychain.sign(network: .Ethereum, data: txData, path: self.keyPath(isMetamask))
                 ))
             } catch let err {
                 response(.failure(.internalError(err)))
@@ -58,7 +56,7 @@ extension Account {
     ) {
         DispatchQueue.global().async {
             do {
-                let keychain = try self.eth_keychain()
+                var keychain = try self.eth_keychain()
                 try response(.success(
                     keychain.sign(
                         network: .Ethereum,
@@ -80,7 +78,7 @@ extension Account {
             signData.append(String(describing: data.count).data(using: .utf8)!)
             signData.append(data)
             do {
-                let keychain = try self.eth_keychain()
+                var keychain = try self.eth_keychain()
                 try response(.success(
                     keychain.sign(
                         network: .Ethereum,
@@ -93,14 +91,16 @@ extension Account {
         }
     }
     
-    func keyPath(_ isMetamask: Bool) -> KeyPath {
-        return isMetamask ? MetamaskKeyPath(account: index) : EthereumKeyPath(account: index)
+    func keyPath(_ isMetamask: Bool) throws -> KeyPath {
+        return try isMetamask
+            ? KeyPath.ethereumMetamask(account: self.index)
+            : KeyPath.ethereum(account: self.index)
     }
     
-    private func eth_keychain() throws -> Keychain {
+    private func eth_keychain() throws -> KeychainPtr {
         if let support = networkSupport[.Ethereum] as? EthereumNetworkSupport {
             return support.keychain
         }
-        throw Keychain.Error.networkIsNotSupported(.Ethereum)
+        throw KeychainError.networkIsNotSupported(.Ethereum)
     }
 }

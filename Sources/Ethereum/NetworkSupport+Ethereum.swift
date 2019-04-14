@@ -19,8 +19,8 @@
 //
 
 import Foundation
-import EthereumBase
 import Keychain
+import CryptoSwift
 
 public struct EthereumNetwork: NetworkSupportFactory {
     public let network: Network
@@ -29,7 +29,7 @@ public struct EthereumNetwork: NetworkSupportFactory {
         network = .Ethereum
     }
     
-    public func withKeychain(keychain: Keychain, for wallet: Wallet) -> NetworkSupport {
+    public func withKeychain(keychain: KeychainPtr, for wallet: Wallet) -> NetworkSupport {
         return EthereumNetworkSupport(
             keychain: keychain,
             isMetamask: wallet.associatedData[.isMetamask]?.bool ?? false
@@ -38,25 +38,30 @@ public struct EthereumNetwork: NetworkSupportFactory {
 }
 
 protocol EthereumKeychainNetworkSuppport: NetworkSupport {
-    var keychain: Keychain { get }
+    var keychain: KeychainPtr { get }
 }
 
 struct EthereumNetworkSupport: EthereumKeychainNetworkSuppport {
-    let keychain: Keychain
+    let keychain: KeychainPtr
     let isMetamask: Bool
     
-    init(keychain: Keychain, isMetamask: Bool) {
+    init(keychain: KeychainPtr, isMetamask: Bool) {
         self.keychain = keychain
         self.isMetamask = isMetamask
     }
     
     func createFirstAddress(accountIndex: UInt32) throws -> Address {
-        let keyPath: KeyPath = isMetamask
-            ? MetamaskKeyPath(account: accountIndex)
-            : EthereumKeyPath(account: accountIndex)
-        let address = try self.keychain.address(network: .Ethereum, path: keyPath)
-        let ethAddress = try EthereumBase.Address(hex: address, eip55: false)
-        return Address(index: 0, address: ethAddress.rawValue, network: .Ethereum)
+        let keyPath: KeyPath = try self.isMetamask
+            ? KeyPath.ethereumMetamask(account: accountIndex)
+            : KeyPath.ethereum(account: accountIndex)
+        var keychain = self.keychain
+        var pubKey = try keychain.pubKey(network: .Ethereum, path: keyPath).bytes
+        pubKey.remove(at: 0)
+        var hash = SHA3(variant: .keccak256).calculate(for: pubKey)
+        guard hash.count == 32 else {
+            throw KeychainError.keyError("Hash from pubkey length != 32")
+        }
+        return Address(index: 0, address: Data(hash[12...]), network: .Ethereum)
     }
 }
 

@@ -24,7 +24,8 @@ import Keychain
 
 
 public class Wallet {
-    private var _networks: Dictionary<Network, NetworkSupportFactory>
+    private var _manager: Manager
+    private var _keychain: KeychainPtr?
     private var _privateData: Data
     private let _accountsLock: NSLock = NSLock()
     
@@ -40,25 +41,32 @@ public class Wallet {
     
     public init(
         id: String, privateData: Data,
-        networks: Dictionary<Network, NetworkSupportFactory>,
+        manager: Manager,
         accounts: Array<Account> = [],
         associatedData: Dictionary<AssociatedKeys, SerializableProtocol> = [:]
     ) {
         self.id = id
         self.accounts = accounts
         self._privateData = privateData
-        self._networks = networks
+        self._manager = manager
         self.networkSupport = nil
+        self._keychain = nil
         self.associatedData = associatedData
     }
     
+    deinit {
+        _keychain?.delete()
+    }
+    
     public var isLocked: Bool {
-        return networkSupport == nil
+        return _keychain == nil
     }
     
     public func lock() {
         _accountsLock.lock()
         defer { _accountsLock.unlock() }
+        _keychain?.delete()
+        _keychain = nil
         networkSupport = nil
     }
     
@@ -68,29 +76,34 @@ public class Wallet {
         _accountsLock.lock()
         defer { _accountsLock.unlock() }
         
-        let keychain = try Keychain(encrypted: _privateData, password: password)
+        var keychain = try _manager.keychain(data: _privateData, password: password)
         
         var support = Dictionary<Network, NetworkSupport>()
         
-        for network in keychain.networks {
-            if let factory = _networks[network] {
+        for network in keychain.networks() {
+            if let factory = _manager.networks[network] {
                 support[network] = factory.withKeychain(keychain: keychain, for: self)
             }
         }
+        
         for account in accounts {
             try account.setNetworkSupport(supported: support)
         }
         
+        _keychain = keychain
         networkSupport = support
-        //_networks = nil
     }
     
     public func checkPassword(password: String) -> Bool {
-        return (try? Keychain(encrypted: _privateData, password: password)) != nil
+        if var keychain = try? _manager.keychain(data: _privateData, password: password) {
+            keychain.delete()
+            return true
+        }
+        return false
     }
     
     public func changePassword(old: String, new: String) throws {
-        _privateData = try Keychain.changePassword(encrypted: _privateData, oldPassword: old, newPassword: new)
+        _privateData = try _manager.changePassword(data: _privateData, oldPwd: old, newPwd: new)
     }
     
     public func addAccount() throws -> Account {
@@ -134,7 +147,7 @@ extension Wallet {
     
     internal convenience init(
         data: StorageData,
-        networks: Dictionary<Network, NetworkSupportFactory>
+        manager: Manager
     ) throws {
         let accounts = try data.accounts.map { try Account(storageData: $0) }
         var associatedData = Dictionary<AssociatedKeys, SerializableProtocol>()
@@ -143,7 +156,7 @@ extension Wallet {
         }
         self.init(
             id: data.id, privateData: data.privateKeys,
-            networks: networks, accounts: accounts, associatedData: associatedData
+            manager: manager, accounts: accounts, associatedData: associatedData
         )
     }
     
@@ -160,14 +173,6 @@ extension Wallet {
         )
     }
 }
-
-//extension Wallet {
-//    public var distributedAPI: dAPI {
-//        let dapi = dAPI()
-//        dapi.signProvider = self
-//        return dapi
-//    }
-//}
 
 extension Wallet: Equatable {
     public static func == (lhs: Wallet, rhs: Wallet) -> Bool {

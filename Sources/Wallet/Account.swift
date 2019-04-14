@@ -87,7 +87,7 @@ extension Account {
             index: UInt32,
             addresses: Dictionary<Network, Array<Address>>,
             associatedData: Dictionary<String, SerializableValue>
-            ) {
+        ) {
             self.id = id
             self.index = index
             self.addresses = addresses

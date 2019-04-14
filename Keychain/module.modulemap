@@ -1,0 +1,6 @@
+module Keychain [system] {
+    umbrella header "keychain.h"
+    link "rust_keychain"
+    link "resolv"
+    export *
+}

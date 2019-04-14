@@ -3,8 +3,7 @@ platform :ios, '10.0'
 
 inhibit_all_warnings!
 
-target :Wallet do    
-    pod 'TesseractKeychain', :git => 'https://github.com/tesseract-one/swift-keychain.git', :branch => 'master'
+target :Wallet do
     pod 'TesseractEthereumBase', :git => 'https://github.com/tesseract-one/swift-ethereum-base.git', :branch => 'master'
     pod 'SerializableValue', :git => 'https://github.com/tesseract-one/swift-serializable.git', :branch => 'master'
     
@@ -15,7 +14,6 @@ target :Wallet do
 end
 
 target :WalletTests do
-   pod 'TesseractKeychain', :git => 'https://github.com/tesseract-one/swift-keychain.git', :branch => 'master'
    pod 'TesseractEthereumBase', :git => 'https://github.com/tesseract-one/swift-ethereum-base.git', :branch => 'master'
    pod 'SerializableValue', :git => 'https://github.com/tesseract-one/swift-serializable.git', :branch => 'master'
    

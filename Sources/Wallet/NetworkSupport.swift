@@ -24,7 +24,7 @@ import Keychain
 public protocol NetworkSupportFactory {
     var network: Network { get }
     
-    func withKeychain(keychain: Keychain, for wallet: Wallet) -> NetworkSupport
+    func withKeychain(keychain: KeychainPtr, for wallet: Wallet) -> NetworkSupport
 }
 
 public protocol NetworkSupport {

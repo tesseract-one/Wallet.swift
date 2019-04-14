@@ -1,19 +1,16 @@
 PODS:
   - BigInt (3.1.0):
     - SipHash (~> 1.2)
-  - CryptoSwift (0.14.0)
-  - MnemonicKit (1.3.4):
-    - CryptoSwift (~> 0.14.0)
-  - PromiseKit (6.8.3):
-    - PromiseKit/CorePromise (= 6.8.3)
-    - PromiseKit/Foundation (= 6.8.3)
-    - PromiseKit/UIKit (= 6.8.3)
-  - PromiseKit/CorePromise (6.8.3)
-  - PromiseKit/Foundation (6.8.3):
+  - CryptoSwift (0.15.0)
+  - PromiseKit (6.8.4):
+    - PromiseKit/CorePromise (= 6.8.4)
+    - PromiseKit/Foundation (= 6.8.4)
+    - PromiseKit/UIKit (= 6.8.4)
+  - PromiseKit/CorePromise (6.8.4)
+  - PromiseKit/Foundation (6.8.4):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (6.8.3):
+  - PromiseKit/UIKit (6.8.4):
     - PromiseKit/CorePromise
-  - secp256k1.swift (0.1.4)
   - SerializableValue (0.0.1)
   - SipHash (1.2.2)
   - SQLite.swift (0.11.5):
@@ -27,11 +24,6 @@ PODS:
     - BigInt (~> 3.1)
     - CryptoSwift (~> 0.13)
     - SerializableValue (~> 0.0.1)
-  - TesseractKeychain (0.0.1):
-    - BigInt (~> 3.1)
-    - CryptoSwift (~> 0.13)
-    - MnemonicKit (~> 1.3.0)
-    - secp256k1.swift (~> 0.1)
 
 DEPENDENCIES:
   - PromiseKit (~> 6.8.0)
@@ -39,15 +31,12 @@ DEPENDENCIES:
   - SQLite.swift (from `https://github.com/stephencelis/SQLite.swift.git`, branch `master`)
   - SQLiteMigrationManager.swift (~> 0.5.0)
   - TesseractEthereumBase (from `https://github.com/tesseract-one/swift-ethereum-base.git`, branch `master`)
-  - TesseractKeychain (from `https://github.com/tesseract-one/swift-keychain.git`, branch `master`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - BigInt
     - CryptoSwift
-    - MnemonicKit
     - PromiseKit
-    - secp256k1.swift
     - SipHash
     - SQLiteMigrationManager.swift
 
@@ -61,13 +50,10 @@ EXTERNAL SOURCES:
   TesseractEthereumBase:
     :branch: master
     :git: https://github.com/tesseract-one/swift-ethereum-base.git
-  TesseractKeychain:
-    :branch: master
-    :git: https://github.com/tesseract-one/swift-keychain.git
 
 CHECKOUT OPTIONS:
   SerializableValue:
-    :commit: a77ea4589520eac0406912dca1dc54466ffa82ac
+    :commit: 0e4aa421681921c3144c42f9c4439eba832f81d1
     :git: https://github.com/tesseract-one/swift-serializable.git
   SQLite.swift:
     :commit: 861ff28adec8d175e7f5923340947f0895121416
@@ -75,23 +61,17 @@ CHECKOUT OPTIONS:
   TesseractEthereumBase:
     :commit: 4597c5f222589480ef140187b270cc652ed27be4
     :git: https://github.com/tesseract-one/swift-ethereum-base.git
-  TesseractKeychain:
-    :commit: e335f23e9e5ba4fc76db98e6c6491a04a12565f0
-    :git: https://github.com/tesseract-one/swift-keychain.git
 
 SPEC CHECKSUMS:
   BigInt: 76b5dfdfa3e2e478d4ffdf161aeede5502e2742f
-  CryptoSwift: 35a10419f4dbf0619c13f8c1c180037e115323fa
-  MnemonicKit: c3517dfad15b7cc21ede6660b433aaae083faaa4
-  PromiseKit: 94c6e781838c5bf4717677d0d882b0e7250c80fc
-  secp256k1.swift: a7e7a214f6db6ce5db32cc6b2b45e5c4dd633634
-  SerializableValue: 4dec77eadb50f94f4070f84a8826c51bc481e9cd
+  CryptoSwift: 769f58a9e89f64e8796c2e59ce5f002dc81a2438
+  PromiseKit: 51794a832647e7b819336dc2279039ce9f1cc49b
+  SerializableValue: 231634d0fa47a27bfbf46337c954107454864c9d
   SipHash: fad90a4683e420c52ef28063063dbbce248ea6d4
   SQLite.swift: 7e42c4b88dc7a5d764fbd431001e6d8dc8c1cfce
   SQLiteMigrationManager.swift: 646cfccb9a446b3134d19dca7a5ec5437f82da76
   TesseractEthereumBase: cc36a0266461f2bceaa18e10942bfc91e31d0fa3
-  TesseractKeychain: 2cbbc08729398002c839086c8b76d7386654e488
 
-PODFILE CHECKSUM: d2f645aabe266eca0e41459663b79095eb3c0de7
+PODFILE CHECKSUM: 583f665fab8e495e2a859e36ab61956a3f8daca5
 
 COCOAPODS: 1.6.1

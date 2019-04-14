@@ -1,8 +1,8 @@
 //
-//  Network.swift
+//  Keychain+Ethereum.swift
 //  Wallet
 //
-//  Created by Yehor Popovych on 3/28/19.
+//  Created by Yehor Popovych on 4/14/19.
 //  Copyright © 2019 Tesseract Systems, Inc. All rights reserved.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,13 +18,22 @@
 //  limitations under the License.
 //
 
+import Keychain
 
-public struct Network: Hashable, Codable, RawRepresentable {
-    public typealias RawValue = UInt32
+public extension Network {
+    static var Ethereum: Network = Network(NETWORK_ETHEREUM())
+}
+
+extension KeyPath {
+    static func ethereum(account: UInt32) throws -> KeyPath {
+        return try KeychainResult<KeyPath>.wrap { path, error in
+            keypath_ethereum_new(account, path, error)
+        }.get()
+    }
     
-    public let rawValue: UInt32
-    
-    public init(rawValue: UInt32) {
-        self.rawValue = rawValue
+    static func ethereumMetamask(account: UInt32) throws -> KeyPath {
+        return try KeychainResult<KeyPath>.wrap { path, error in
+            keypath_ethereum_new_metamask(account, path, error)
+        }.get()
     }
 }
