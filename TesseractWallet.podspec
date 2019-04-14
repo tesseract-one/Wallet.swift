@@ -11,7 +11,7 @@ Swift SDK for multi-network wallet implementation
 
   s.license          = { :type => 'Apache 2.0', :file => 'LICENSE' }
   s.author           = { 'Tesseract Systems, Inc.' => 'info@tesseract.one' }
-  s.source           = { :git => 'https://github.com/tesseract-one/swift-wallet-sdk.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/tesseract-one/swift-wallet-sdk.git', :tag => s.version.to_s, :submodules => true }
   s.social_media_url = 'https://twitter.com/tesseract_one'
 
   s.ios.deployment_target = '10.0'
