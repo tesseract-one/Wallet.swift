@@ -8,11 +8,17 @@ if [ "$HAS_CARGO_IN_PATH" -ne "0" ]; then
     PATH="${HOME}/.cargo/bin:${PATH}"
 fi
 
-cd "${SRCROOT}"/Keychain/rust-keychain
+if [ -z "${PODS_TARGET_SRCROOT}" ]; then
+    ROOT_DIR="${SRCROOT}/Keychain"
+else
+    ROOT_DIR="${PODS_TARGET_SRCROOT}/Keychain"
+fi
+
+cd "${ROOT_DIR}"
 
 cargo lipo --release --package tesseract-keychain-c --no-default-features --features "ethereum"
 
-cp -f "${SRCROOT}"/Keychain/rust-keychain/target/universal/release/*.a "${SRCROOT}"/Keychain/
-cp -f "${SRCROOT}"/Keychain/rust-keychain/keychain-c/include/*.h "${SRCROOT}"/Keychain/
+cp -f "${ROOT_DIR}"/rust-keychain/target/universal/release/*.a "${ROOT_DIR}"/
+cp -f "${ROOT_DIR}"/rust-keychain/keychain-c/include/*.h "${ROOT_DIR}"/
 
 exit 0
