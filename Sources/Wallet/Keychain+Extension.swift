@@ -30,7 +30,7 @@ extension KeychainManagerPtr {
     
     mutating func generateMnemonic() throws -> String {
         var sself = self
-        var mnemonic = try KeychainResult<PChar>.wrap { mnemonic, error in
+        var mnemonic = try KeychainResult<CharPtr>.wrap { mnemonic, error in
             keychain_manager_generate_mnemonic(&sself, English, mnemonic, error)
         }.get()
         defer { mnemonic?.delete() }
@@ -135,13 +135,13 @@ extension ErrorPtr {
     }
 }
 
-extension PChar {
+extension CharPtr {
     var string: String {
         return String(utf8String: self)!
     }
     
     mutating func delete() {
-        free(UnsafeMutablePointer(OpaquePointer(self)))
+        delete_string(self)
     }
 }
 
