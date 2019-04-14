@@ -18,18 +18,20 @@ Swift SDK for multi-network wallet implementation
 
   s.module_name = 'Wallet'
 
-  s.script_phase = {
-    :name => 'Build Rust Binary',
-    :script => 'bash "${PODS_TARGET_SRCROOT}/Keychain/build.sh"',
-    :execution_position => :before_compile
-  }
-
-  s.pod_target_xcconfig = {
-    'SWIFT_INCLUDE_PATHS' => '"${PODS_TARGET_SRCROOT}"',
-    'LIBRARY_SEARCH_PATHS' => '"${PODS_TARGET_SRCROOT}/Keychain"'
-  }
-
   s.subspec 'Core' do |ss|
+    ss.script_phase = {
+      :name => 'Build Rust Binary',
+      :script => 'bash "${PODS_TARGET_SRCROOT}/Keychain/build.sh"',
+      :execution_position => :before_compile
+    }
+
+    ss.pod_target_xcconfig = {
+      'SWIFT_INCLUDE_PATHS' => '"${PODS_TARGET_SRCROOT}"',
+      'LIBRARY_SEARCH_PATHS' => '"${PODS_TARGET_SRCROOT}/Keychain"'
+    }
+
+    ss.preserve_paths = 'Keychain/**/*'
+
     ss.source_files = 'Sources/Wallet/**/*.swift'
 
     ss.dependency 'SerializableValue', '~> 0.0.1'
