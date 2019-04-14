@@ -27,7 +27,8 @@ Swift SDK for multi-network wallet implementation
 
     ss.pod_target_xcconfig = {
       'SWIFT_INCLUDE_PATHS' => '"${PODS_TARGET_SRCROOT}"',
-      'LIBRARY_SEARCH_PATHS' => '"${PODS_TARGET_SRCROOT}/Keychain"'
+      'LIBRARY_SEARCH_PATHS' => '"${PODS_TARGET_SRCROOT}/Keychain"',
+      'ENABLE_BITCODE' => 'NO'
     }
 
     ss.preserve_paths = 'Keychain/**/*'
