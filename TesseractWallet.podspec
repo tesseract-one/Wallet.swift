@@ -18,10 +18,20 @@ Swift SDK for multi-network wallet implementation
 
   s.module_name = 'Wallet'
 
+  s.script_phase = {
+    :name => 'Build Rust Binary',
+    :script => 'bash "${PODS_TARGET_SRCROOT}/Keychain/build.sh"',
+    :execution_position => :before_compile
+  }
+
+  s.pod_target_xcconfig = {
+    'SWIFT_INCLUDE_PATHS' => '"${PODS_TARGET_SRCROOT}"',
+    'LIBRARY_SEARCH_PATHS' => '"${PODS_TARGET_SRCROOT}/Keychain"'
+  }
+
   s.subspec 'Core' do |ss|
     ss.source_files = 'Sources/Wallet/**/*.swift'
 
-    ss.dependency 'TesseractKeychain', '~> 0.0.1'
     ss.dependency 'SerializableValue', '~> 0.0.1'
     ss.dependency 'SQLite.swift', '~> 0.11.0'
     ss.dependency 'SQLiteMigrationManager.swift', '~> 0.5.0'
