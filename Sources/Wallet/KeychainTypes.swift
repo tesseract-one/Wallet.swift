@@ -30,8 +30,6 @@ import var Keychain.KeyDoesNotExist
 import var Keychain.KeyError
 import var Keychain.KeyPathError
 import var Keychain.MnemonicError
-import func Keychain.delete_error
-import func Keychain.NETWORK_ETHEREUM
 
 extension Network {
     init(_ network: Keychain.Network) {
