@@ -14,7 +14,7 @@ else
     ROOT_DIR="${PODS_TARGET_SRCROOT}/Keychain"
 fi
 
-cd "${ROOT_DIR}"
+cd "${ROOT_DIR}"/rust-keychain
 
 cargo lipo --release --package tesseract-keychain-c --no-default-features --features "ethereum"
 
