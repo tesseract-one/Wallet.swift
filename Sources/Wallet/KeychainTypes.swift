@@ -81,13 +81,11 @@ extension Swift.Result {
     ) -> KeychainResult<S> {
         var error = ErrorPtr()
         let val = UnsafeMutablePointer<S>.allocate(capacity: 1)
+        defer { val.deallocate() }
         if !cb(val, &error) {
-            let err = error.error
-            error.delete()
-            return .failure(err)
+            defer { error.delete() }
+            return .failure(error.error)
         }
-        let response: S = val.pointee
-        val.deallocate()
-        return .success(response)
+        return .success(val.pointee)
     }
 }
