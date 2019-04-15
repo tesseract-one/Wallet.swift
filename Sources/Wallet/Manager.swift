@@ -66,11 +66,9 @@ public class Manager {
         return NewWalletData(mnemonic: mnemonic, encrypted: encrypted)
     }
     
-    public func create(from data: NewWalletData, password: String) throws -> Wallet {
+    public func create(from data: NewWalletData) throws -> Wallet {
         let id = UUID().uuidString
         let wallet = Wallet(id: id, privateData: data.encrypted, manager: self)
-        try wallet.unlock(password: password)
-        _ = try wallet.addAccount()
         return wallet
     }
     
