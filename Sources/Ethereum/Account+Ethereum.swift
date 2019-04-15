@@ -23,6 +23,8 @@ import Keychain
 import BigInt
 import EthereumBase
 
+private let ETHEREUM_MAGIC_NUMBER: UInt8 = 27;
+
 public extension Account {
     func eth_address() throws -> EthereumBase.Address {
         if let ethAddrs = addresses[.Ethereum] {
@@ -41,9 +43,11 @@ extension Account {
             do {
                 var keychain = try self.eth_keychain()
                 let txData = try tx.rawData(chainId: BigUInt(chainId))
-                try response(.success(
-                    keychain.sign(network: .Ethereum, data: txData, path: self.keyPath(isMetamask))
-                ))
+                var signature = try keychain.sign(
+                    network: .Ethereum, data: txData, path: self.keyPath(isMetamask)
+                )
+                signature[signature.count-1] = signature[signature.count-1] + ETHEREUM_MAGIC_NUMBER
+                response(.success(signature))
             } catch let err {
                 response(.failure(.internalError(err)))
             }
@@ -57,12 +61,12 @@ extension Account {
         DispatchQueue.global().async {
             do {
                 var keychain = try self.eth_keychain()
-                try response(.success(
-                    keychain.sign(
-                        network: .Ethereum,
-                        data: data.signableMessageData(),
-                        path: self.keyPath(isMetamask))
-                    ))
+                var signature = try keychain.sign(
+                    network: .Ethereum, data: data.signableMessageData(),
+                    path: self.keyPath(isMetamask)
+                )
+                signature[signature.count-1] = signature[signature.count-1] + ETHEREUM_MAGIC_NUMBER
+                response(.success(signature))
             } catch let err {
                 response(.failure(.internalError(err)))
             }
@@ -79,12 +83,12 @@ extension Account {
             signData.append(data)
             do {
                 var keychain = try self.eth_keychain()
-                try response(.success(
-                    keychain.sign(
-                        network: .Ethereum,
-                        data: signData,
-                        path: self.keyPath(isMetamask))
-                    ))
+                var signature = try keychain.sign(
+                    network: .Ethereum, data: signData,
+                    path: self.keyPath(isMetamask)
+                )
+                signature[signature.count-1] = signature[signature.count-1] + ETHEREUM_MAGIC_NUMBER
+                response(.success(signature))
             } catch let err {
                 response(.failure(.internalError(err)))
             }
