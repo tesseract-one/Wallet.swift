@@ -59,7 +59,7 @@ CHECKOUT OPTIONS:
     :commit: 861ff28adec8d175e7f5923340947f0895121416
     :git: https://github.com/stephencelis/SQLite.swift.git
   TesseractEthereumBase:
-    :commit: 4597c5f222589480ef140187b270cc652ed27be4
+    :commit: 7ef49035b4e26d6d9a3e2c08efe0a573e351730b
     :git: https://github.com/tesseract-one/swift-ethereum-base.git
 
 SPEC CHECKSUMS:
