@@ -14,11 +14,13 @@ else
     ROOT_DIR="${PODS_TARGET_SRCROOT}/Keychain"
 fi
 
+OUTPUT_DIR=`echo "$CONFIGURATION" | tr '[:upper:]' '[:lower:]'`
+
 cd "${ROOT_DIR}"/rust-keychain
 
-cargo lipo --release --package tesseract-keychain-c --no-default-features --features "ethereum"
+cargo lipo --xcode-integ --manifest-path "keychain-c/Cargo.toml" --no-default-features --features "ethereum"
 
-cp -f "${ROOT_DIR}"/rust-keychain/target/universal/release/*.a "${ROOT_DIR}"/
+cp -f "${ROOT_DIR}"/rust-keychain/target/universal/"${OUTPUT_DIR}"/*.a "${ROOT_DIR}"/
 cp -f "${ROOT_DIR}"/rust-keychain/keychain-c/include/*.h "${ROOT_DIR}"/
 
 exit 0
