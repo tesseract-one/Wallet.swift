@@ -45,6 +45,9 @@ public class Manager {
     public let storage: StorageProtocol
     
     public init(networks: [NetworkSupportFactory], storage: StorageProtocol) throws {
+        // Library initialization
+        let _ = KeychainManagerPtr.initializeLibrary
+        
         self.manager = try KeychainManagerPtr.new()
         
         let tuple = networks.map { ($0.network, $0) }

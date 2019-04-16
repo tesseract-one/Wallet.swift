@@ -22,6 +22,10 @@ import Foundation
 import Keychain
 
 extension KeychainManagerPtr {
+    static let initializeLibrary: Void = {
+        keychain_init_library()
+    }()
+    
     static func new() throws -> KeychainManagerPtr {
         return try KeychainResult<KeychainManagerPtr>.wrap { manager, error in
             keychain_manager_new(manager, error)
@@ -74,8 +78,11 @@ extension KeychainManagerPtr {
 }
 
 extension KeychainPtr {
-    mutating func networks() -> [Network] {
-        var nets = keychain_networks(&self)
+    mutating func networks() throws -> [Network] {
+        var sself = self
+        var nets = try KeychainResult<NetworksPtr>.wrap { networks, error in
+            keychain_networks(&sself, networks, error)
+        }.get()
         defer { nets.delete() }
         return nets.networks.map { $0.network }
     }

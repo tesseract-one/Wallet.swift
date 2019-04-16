@@ -80,7 +80,7 @@ public class Wallet {
         
         var support = Dictionary<Network, NetworkSupport>()
         
-        for network in keychain.networks() {
+        for network in try keychain.networks() {
             if let factory = _manager.networks[network] {
                 support[network] = factory.withKeychain(keychain: keychain, for: self)
             }
