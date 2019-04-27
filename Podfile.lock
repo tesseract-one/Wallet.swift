@@ -13,10 +13,10 @@ PODS:
     - PromiseKit/CorePromise
   - SerializableValue (0.0.1)
   - SipHash (1.2.2)
-  - SQLite.swift (0.11.5):
-    - SQLite.swift/standard (= 0.11.5)
-  - SQLite.swift/standard (0.11.5)
-  - SQLiteMigrationManager.swift (0.5.0):
+  - SQLite.swift (0.11.6):
+    - SQLite.swift/standard (= 0.11.6)
+  - SQLite.swift/standard (0.11.6)
+  - SQLiteMigrationManager.swift (0.6.0):
     - SQLite.swift (~> 0.11.0)
   - TesseractEthereumBase (0.0.1):
     - TesseractEthereumBase/Core (= 0.0.1)
@@ -28,8 +28,8 @@ PODS:
 DEPENDENCIES:
   - PromiseKit (~> 6.8.0)
   - SerializableValue (from `https://github.com/tesseract-one/swift-serializable.git`, branch `master`)
-  - SQLite.swift (from `https://github.com/stephencelis/SQLite.swift.git`, branch `master`)
-  - SQLiteMigrationManager.swift (~> 0.5.0)
+  - SQLite.swift (~> 0.11.0)
+  - SQLiteMigrationManager.swift (~> 0.6.0)
   - TesseractEthereumBase (from `https://github.com/tesseract-one/swift-ethereum-base.git`, branch `master`)
 
 SPEC REPOS:
@@ -38,15 +38,13 @@ SPEC REPOS:
     - CryptoSwift
     - PromiseKit
     - SipHash
+    - SQLite.swift
     - SQLiteMigrationManager.swift
 
 EXTERNAL SOURCES:
   SerializableValue:
     :branch: master
     :git: https://github.com/tesseract-one/swift-serializable.git
-  SQLite.swift:
-    :branch: master
-    :git: https://github.com/stephencelis/SQLite.swift.git
   TesseractEthereumBase:
     :branch: master
     :git: https://github.com/tesseract-one/swift-ethereum-base.git
@@ -55,9 +53,6 @@ CHECKOUT OPTIONS:
   SerializableValue:
     :commit: 0e4aa421681921c3144c42f9c4439eba832f81d1
     :git: https://github.com/tesseract-one/swift-serializable.git
-  SQLite.swift:
-    :commit: 861ff28adec8d175e7f5923340947f0895121416
-    :git: https://github.com/stephencelis/SQLite.swift.git
   TesseractEthereumBase:
     :commit: 7ef49035b4e26d6d9a3e2c08efe0a573e351730b
     :git: https://github.com/tesseract-one/swift-ethereum-base.git
@@ -68,10 +63,10 @@ SPEC CHECKSUMS:
   PromiseKit: 51794a832647e7b819336dc2279039ce9f1cc49b
   SerializableValue: 231634d0fa47a27bfbf46337c954107454864c9d
   SipHash: fad90a4683e420c52ef28063063dbbce248ea6d4
-  SQLite.swift: 7e42c4b88dc7a5d764fbd431001e6d8dc8c1cfce
-  SQLiteMigrationManager.swift: 646cfccb9a446b3134d19dca7a5ec5437f82da76
+  SQLite.swift: 46d890be8601964454bd3392527f863d1b802d45
+  SQLiteMigrationManager.swift: 504d426ed21af28c37cea836f24ef759cefb1502
   TesseractEthereumBase: cc36a0266461f2bceaa18e10942bfc91e31d0fa3
 
-PODFILE CHECKSUM: 583f665fab8e495e2a859e36ab61956a3f8daca5
+PODFILE CHECKSUM: 35a9ec44eb4d0a73a6929aee902207093736097e
 
 COCOAPODS: 1.6.1

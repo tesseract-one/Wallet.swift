@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'TesseractWallet'
-  s.version          = '0.0.1'
+  s.version          = '0.0.2'
   s.summary          = 'Tesseract Wallet SDK for Swift'
 
   s.description      = <<-DESC
@@ -37,7 +37,7 @@ Swift SDK for multi-network wallet implementation
 
     ss.dependency 'SerializableValue', '~> 0.0.1'
     ss.dependency 'SQLite.swift', '~> 0.11.0'
-    ss.dependency 'SQLiteMigrationManager.swift', '~> 0.5.0'
+    ss.dependency 'SQLiteMigrationManager.swift', '~> 0.6.0'
   end
 
   s.subspec 'Ethereum' do |ss|
