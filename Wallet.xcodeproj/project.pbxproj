@@ -29,6 +29,7 @@
 		927C5A2E224D35E600F2AA50 /* Account+Ethereum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927C5A2D224D35E600F2AA50 /* Account+Ethereum.swift */; };
 		927C5A32224D3C8E00F2AA50 /* NetworkSupport+Ethereum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927C5A31224D3C8E00F2AA50 /* NetworkSupport+Ethereum.swift */; };
 		927C5A34224D402F00F2AA50 /* Tesseract.Wallet.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 927C5A33224D402F00F2AA50 /* Tesseract.Wallet.podspec */; };
+		92B5790A227A86D1003E989D /* Data+Blob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B57909227A86D1003E989D /* Data+Blob.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		927C5A2D224D35E600F2AA50 /* Account+Ethereum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Account+Ethereum.swift"; sourceTree = "<group>"; };
 		927C5A31224D3C8E00F2AA50 /* NetworkSupport+Ethereum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkSupport+Ethereum.swift"; sourceTree = "<group>"; };
 		927C5A33224D402F00F2AA50 /* Tesseract.Wallet.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Tesseract.Wallet.podspec; sourceTree = "<group>"; };
+		92B57909227A86D1003E989D /* Data+Blob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Blob.swift"; sourceTree = "<group>"; };
 		A0E589DDFBC90159F694C7D0 /* Pods_Wallet_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wallet_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E38770A253D55828F4FBDB0C /* Pods-WalletTests-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletTests-iOS.debug.xcconfig"; path = "Target Support Files/Pods-WalletTests-iOS/Pods-WalletTests-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -174,6 +176,7 @@
 		927C59E9224D1C8D00F2AA50 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				92B57909227A86D1003E989D /* Data+Blob.swift */,
 				927C59EA224D1C8D00F2AA50 /* DatabaseStorageTables.swift */,
 				927C59EB224D1C8D00F2AA50 /* DatabaseStorageMigrations.swift */,
 				927C59EC224D1C8D00F2AA50 /* DatabaseStorage.swift */,
@@ -428,6 +431,7 @@
 				927C5A2C224D34F000F2AA50 /* Wallet+Ethereum.swift in Sources */,
 				926C555A2262C73300D14851 /* Keychain+Extension.swift in Sources */,
 				926C555C226352C700D14851 /* Keychain+Ethereum.swift in Sources */,
+				92B5790A227A86D1003E989D /* Data+Blob.swift in Sources */,
 				927C59F4224D1C8E00F2AA50 /* DatabaseStorage.swift in Sources */,
 				927C59F0224D1C8E00F2AA50 /* Wallet.swift in Sources */,
 				927C5A32224D3C8E00F2AA50 /* NetworkSupport+Ethereum.swift in Sources */,

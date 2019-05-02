@@ -20,7 +20,6 @@
 
 import Foundation
 import Keychain
-import EthereumTypes
 import SQLite
 import SQLiteMigrationManager
 

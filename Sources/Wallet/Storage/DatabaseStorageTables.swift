@@ -54,7 +54,7 @@ struct WalletDBModel {
     }
     
     func getKeys() throws -> Data {
-        return try Data(row.get(WalletDBModel.keys).bytes)
+        return try Data(row.get(WalletDBModel.keys))
     }
     
     func getAssociatedData() throws -> Dictionary<String, SerializableValue> {
@@ -75,7 +75,7 @@ struct WalletDBModel {
         let data = try encoder.encode(storage.associatedData)
         return [
             WalletDBModel.id <- storage.id,
-            WalletDBModel.keys <- Blob(bytes: storage.privateKeys.bytes),
+            WalletDBModel.keys <- storage.privateKeys.blob,
             WalletDBModel.data <- String(data: data, encoding: .utf8)!
         ]
     }
@@ -159,7 +159,7 @@ struct AddressDBModel {
     func toAddress() throws -> Address {
         return try Address(
             index: UInt32(getIndex()),
-            address: Data(getAddress().bytes),
+            address: Data(getAddress()),
             network: getNetwork()
         )
     }
@@ -168,7 +168,7 @@ struct AddressDBModel {
         return [
             AddressDBModel.index <- Int64(storage.index),
             AddressDBModel.network <- storage.network,
-            AddressDBModel.address <- Blob(bytes: storage.address.bytes),
+            AddressDBModel.address <- storage.address.blob,
             AddressDBModel.accountId <- accountId
         ]
     }
