@@ -5,7 +5,7 @@ set -e
 HAS_CARGO_IN_PATH=`which cargo; echo $?`
 
 if [ "$HAS_CARGO_IN_PATH" -ne "0" ]; then
-    PATH="${HOME}/.cargo/bin:${PATH}"
+    source $HOME/.cargo/env
 fi
 
 if [ -z "${PODS_TARGET_SRCROOT}" ]; then

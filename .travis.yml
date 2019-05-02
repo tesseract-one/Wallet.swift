@@ -16,7 +16,7 @@ matrix:
       sudo: required
       before_install:
         - curl -sSf https://build.travis-ci.com/files/rustup-init.sh | sh -s -- --default-toolchain=$TRAVIS_RUST_VERSION -y
-        - export PATH="$HOME/.cargo/bin:$PATH"
+        - source $HOME/.cargo/env
         - rustup target add i386-apple-ios x86_64-apple-ios
         - cargo install cargo-lipo
         - instruments -s devices
