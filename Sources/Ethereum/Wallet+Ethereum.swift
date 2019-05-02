@@ -20,14 +20,14 @@
 
 import Foundation
 import Keychain
-@_exported import EthereumBase
+@_exported import EthereumTypes
 
 public extension Wallet.AssociatedKeys {
     static let isMetamask = Wallet.AssociatedKeys(rawValue: "isMetamask")
 }
 
 extension Wallet: SignProvider {
-    public func eth_accounts(networkId: UInt64, response: @escaping Response<[EthereumBase.Address]>) {
+    public func eth_accounts(networkId: UInt64, response: @escaping Response<[EthereumTypes.Address]>) {
         DispatchQueue.global().async {
             do {
                 try response(.success(self.accounts.map { try $0.eth_address() }))
@@ -55,7 +55,7 @@ extension Wallet: SignProvider {
     }
     
     public func eth_signData(
-        account: EthereumBase.Address, data: Data, networkId: UInt64,
+        account: EthereumTypes.Address, data: Data, networkId: UInt64,
         response: @escaping Response<Data>
     ) {
         DispatchQueue.global().async {
@@ -71,7 +71,7 @@ extension Wallet: SignProvider {
     }
     
     public func eth_signTypedData(
-        account: EthereumBase.Address, data: TypedData, networkId: UInt64,
+        account: EthereumTypes.Address, data: TypedData, networkId: UInt64,
         response: @escaping Response<Data>
     ) {
         DispatchQueue.global().async {
@@ -86,7 +86,7 @@ extension Wallet: SignProvider {
         }
     }
     
-    private func eth_account(address: EthereumBase.Address) throws -> Account {
+    private func eth_account(address: EthereumTypes.Address) throws -> Account {
         let opAccount = try accounts.first { try $0.eth_address() == address }
         guard let account = opAccount else {
             throw SignProviderError.accountDoesNotExist(address)

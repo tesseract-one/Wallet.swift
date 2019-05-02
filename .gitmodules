@@ -1,0 +1,3 @@
+[submodule "Keychain/Keychain.rs"]
+	path = Keychain/Keychain.rs
+	url = https://github.com/tesseract-one/Keychain.rs.git

@@ -1,17 +1,17 @@
 Pod::Spec.new do |s|
-  s.name             = 'TesseractWallet'
-  s.version          = '0.0.2'
+  s.name             = 'Tesseract.Wallet'
+  s.version          = '0.1.0'
   s.summary          = 'Tesseract Wallet SDK for Swift'
 
   s.description      = <<-DESC
-Swift SDK for multi-network wallet implementation
+Tesseract DApps Platform multi-network Wallet implementation for Swift
                        DESC
 
-  s.homepage         = 'https://github.com/tesseract-one/swift-wallet-sdk'
+  s.homepage         = 'https://github.com/tesseract-one/Wallet.swift'
 
   s.license          = { :type => 'Apache 2.0', :file => 'LICENSE' }
   s.author           = { 'Tesseract Systems, Inc.' => 'info@tesseract.one' }
-  s.source           = { :git => 'https://github.com/tesseract-one/swift-wallet-sdk.git', :tag => s.version.to_s, :submodules => true }
+  s.source           = { :git => 'https://github.com/tesseract-one/Wallet.swift.git', :tag => s.version.to_s, :submodules => true }
   s.social_media_url = 'https://twitter.com/tesseract_one'
 
   s.ios.deployment_target = '10.0'
@@ -35,29 +35,29 @@ Swift SDK for multi-network wallet implementation
 
     ss.source_files = 'Sources/Wallet/**/*.swift'
 
-    ss.dependency 'SerializableValue', '~> 0.0.1'
-    ss.dependency 'SQLite.swift', '~> 0.11.0'
-    ss.dependency 'SQLiteMigrationManager.swift', '~> 0.6.0'
+    ss.dependency 'Serializable.swift', '~> 0.1'
+    ss.dependency 'SQLite.swift', '~> 0.12.0'
+    ss.dependency 'SQLiteMigrationManager.swift', '~> 0.7.0'
   end
 
   s.subspec 'Ethereum' do |ss|
     ss.source_files = 'Sources/Ethereum/**/*.swift'
 
-    ss.dependency 'TesseractWallet/Core'
-    ss.dependency 'TesseractEthereumBase', '~> 0.0.1'
+    ss.dependency 'Tesseract.Wallet/Core'
+    ss.dependency 'Tesseract.EthereumTypes', '~> 0.1'
   end
 
   s.subspec 'PromiseKit' do |ss|
     ss.source_files = 'Sources/PromiseKit/**/*.swift'
 
-    ss.dependency 'TesseractWallet/Core'
+    ss.dependency 'Tesseract.Wallet/Core'
     ss.dependency 'PromiseKit/CorePromise', '~> 6.8.0'
   end
 
   s.subspec 'EthereumPromiseKit' do |ss|
-    ss.dependency 'TesseractWallet/Ethereum'
-    ss.dependency 'TesseractWallet/PromiseKit'
-    ss.dependency 'TesseractEthereumBase/PromiseKit', '~> 0.0.1'
+    ss.dependency 'Tesseract.Wallet/Ethereum'
+    ss.dependency 'Tesseract.Wallet/PromiseKit'
+    ss.dependency 'Tesseract.EthereumTypes/PromiseKit', '~> 0.1'
   end
 
   s.default_subspecs = 'Core'

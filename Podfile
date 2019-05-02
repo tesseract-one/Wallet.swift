@@ -1,24 +1,25 @@
 use_frameworks!
-platform :ios, '10.0'
-
 inhibit_all_warnings!
 
-target :Wallet do
-    pod 'TesseractEthereumBase', :git => 'https://github.com/tesseract-one/swift-ethereum-base.git', :branch => 'master'
-    pod 'SerializableValue', :git => 'https://github.com/tesseract-one/swift-serializable.git', :branch => 'master'
+def common_pods
+    pod 'Serializable.swift', '~> 0.1'
+
+    pod 'Tesseract.EthereumTypes', '~> 0.1'
     
-    pod 'SQLite.swift', '~> 0.11.0'
-    pod 'SQLiteMigrationManager.swift', '~> 0.6.0'
+    pod 'SQLite.swift', '~> 0.12.0'
+    pod 'SQLiteMigrationManager.swift', '~> 0.7.0'
     
     pod 'PromiseKit', '~> 6.8.0'
 end
 
-target :WalletTests do
-   pod 'TesseractEthereumBase', :git => 'https://github.com/tesseract-one/swift-ethereum-base.git', :branch => 'master'
-   pod 'SerializableValue', :git => 'https://github.com/tesseract-one/swift-serializable.git', :branch => 'master'
-   
-   pod 'SQLite.swift', '~> 0.11.0'
-   pod 'SQLiteMigrationManager.swift', '~> 0.6.0'
-   
-   pod 'PromiseKit', '~> 6.8.0'
+target 'Wallet-iOS' do
+    platform :ios, '10.0'
+
+    common_pods
+end
+
+target 'WalletTests-iOS' do
+    platform :ios, '10.0'
+
+    common_pods
 end

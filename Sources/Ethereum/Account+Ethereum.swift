@@ -21,14 +21,14 @@
 import Foundation
 import Keychain
 import BigInt
-import EthereumBase
+import EthereumTypes
 
 private let ETHEREUM_MAGIC_NUMBER: UInt8 = 27;
 
 public extension Account {
-    func eth_address() throws -> EthereumBase.Address {
+    func eth_address() throws -> EthereumTypes.Address {
         if let ethAddrs = addresses[.Ethereum] {
-            return try EthereumBase.Address(rawAddress: ethAddrs[0].address)
+            return try EthereumTypes.Address(rawAddress: ethAddrs[0].address)
         }
         throw KeychainError.networkIsNotSupported(.Ethereum)
     }
