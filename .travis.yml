@@ -5,6 +5,7 @@
 env:
   global:
     - MODULE_NAME=Wallet
+    - TRAVIS_RUST_VERSION=stable
 
 # Run tests on Ubuntu and macOS
 matrix:
@@ -14,6 +15,9 @@ matrix:
       language: objective-c
       sudo: required
       before_install:
+        - curl -sSf https://build.travis-ci.com/files/rustup-init.sh | sh -s -- --default-toolchain=$TRAVIS_RUST_VERSION -y
+        - rustup target add x86_64-apple-ios
+        - cargo install cargo-lipo
         - instruments -s devices
         - gem install cocoapods
         - pod repo update
