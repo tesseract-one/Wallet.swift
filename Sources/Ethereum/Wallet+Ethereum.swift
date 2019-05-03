@@ -100,7 +100,7 @@ extension Wallet: SignProvider {
 }
 
 extension Wallet {
-    public var ethereum: APIRegistry {
+    public var Ethereum: APIRegistry {
         return APIRegistry(signProvider: self)
     }
 }

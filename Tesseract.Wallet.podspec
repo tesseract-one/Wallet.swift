@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Tesseract.Wallet'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'Tesseract Wallet SDK for Swift'
 
   s.description      = <<-DESC
@@ -52,12 +52,6 @@ Tesseract DApps Platform multi-network Wallet implementation for Swift
 
     ss.dependency 'Tesseract.Wallet/Core'
     ss.dependency 'PromiseKit/CorePromise', '~> 6.8.0'
-  end
-
-  s.subspec 'EthereumPromiseKit' do |ss|
-    ss.dependency 'Tesseract.Wallet/Ethereum'
-    ss.dependency 'Tesseract.Wallet/PromiseKit'
-    ss.dependency 'Tesseract.EthereumTypes/PromiseKit', '~> 0.1'
   end
 
   s.default_subspecs = 'Core'
