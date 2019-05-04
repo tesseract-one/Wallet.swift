@@ -16,9 +16,7 @@ PODS:
   - SQLite.swift/standard (0.12.0)
   - SQLiteMigrationManager.swift (0.7.0):
     - SQLite.swift (~> 0.12.0)
-  - Tesseract.EthereumTypes (0.1.1):
-    - Tesseract.EthereumTypes/Core (= 0.1.1)
-  - Tesseract.EthereumTypes/Core (0.1.1):
+  - Tesseract.EthereumTypes (0.1.5):
     - BigInt (~> 4.0)
     - CryptoSwift (~> 1.0)
     - Serializable.swift (~> 0.1)
@@ -47,7 +45,7 @@ SPEC CHECKSUMS:
   Serializable.swift: 46a21fd252974669c1416edf741db56206fabd8b
   SQLite.swift: 7cad9db150a03716336e69469ec9559c85aece5b
   SQLiteMigrationManager.swift: 2dd6f760d6e53f666176346436c689e55a608f7a
-  Tesseract.EthereumTypes: 1b2ee67de19b80c5e934993a0436248cec9e15c5
+  Tesseract.EthereumTypes: 98d0a6341a36ff27874b3445a0ef8d9052f26724
 
 PODFILE CHECKSUM: 3c6e93526c3403b2a16c86e2ee656567db53b132
 

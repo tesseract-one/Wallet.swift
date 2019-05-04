@@ -27,6 +27,11 @@ public extension Wallet.AssociatedKeys {
 }
 
 extension Wallet: SignProvider {
+    
+    public var canSign: Bool {
+        return !isLocked
+    }
+    
     public func eth_accounts(networkId: UInt64, response: @escaping Response<[EthereumTypes.Address]>) {
         DispatchQueue.global().async {
             do {
@@ -100,7 +105,7 @@ extension Wallet: SignProvider {
 }
 
 extension Wallet {
-    public var Ethereum: APIRegistry {
+    public var ethereum: InstanceAPIRegistry {
         return APIRegistry(signProvider: self)
     }
 }
