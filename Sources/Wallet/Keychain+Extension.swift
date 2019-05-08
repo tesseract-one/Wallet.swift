@@ -54,7 +54,9 @@ extension KeychainManagerPtr {
     
     mutating func keychain(data: Data, password: String) throws -> KeychainPtr {
         var sself = self
-        let bytes: UnsafePointer<UInt8> = data.withUnsafeBytes { $0 }
+        let bytes = data.withUnsafeBytes {
+            $0.baseAddress!.assumingMemoryBound(to: UInt8.self)
+        }
         return try KeychainResult<KeychainPtr>.wrap { keychain, error in
             keychain_manager_keychain_from_data(
                 &sself, bytes, UInt(data.count), password, keychain, error
@@ -64,7 +66,9 @@ extension KeychainManagerPtr {
     
     mutating func changePassword(data: Data, old: String, new: String) throws -> Data {
         var sself = self
-        let bytes: UnsafePointer<UInt8> = data.withUnsafeBytes { $0 }
+        let bytes = data.withUnsafeBytes {
+            $0.baseAddress!.assumingMemoryBound(to: UInt8.self)
+        }
         var kData = try KeychainResult<DataPtr>.wrap { response, error in
             keychain_manager_change_password(
                 &sself, bytes, UInt(data.count), old, new, response, error
@@ -91,7 +95,9 @@ extension KeychainPtr {
     
     mutating func sign(network: Network, data: Data, path: KeyPath) throws -> Data {
         var sself = self
-        let bytes: UnsafePointer<UInt8> = data.withUnsafeBytes { $0 }
+        let bytes = data.withUnsafeBytes {
+            $0.baseAddress!.assumingMemoryBound(to: UInt8.self)
+        }
         var signature = try KeychainResult<DataPtr>.wrap { response, error in
             keychain_sign(&sself, network.cNetwork, bytes, UInt(data.count), path, response, error)
         }.get()

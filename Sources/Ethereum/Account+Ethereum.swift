@@ -21,14 +21,14 @@
 import Foundation
 import Keychain
 import BigInt
-import EthereumTypes
+import Ethereum
 
 private let ETHEREUM_MAGIC_NUMBER: UInt8 = 27;
 
 public extension Account {
-    func eth_address() throws -> EthereumTypes.Address {
+    func eth_address() throws -> Ethereum.Address {
         if let ethAddrs = addresses[.Ethereum] {
-            return try EthereumTypes.Address(rawAddress: ethAddrs[0].address)
+            return try Ethereum.Address(rawAddress: ethAddrs[0].address)
         }
         throw KeychainError.networkIsNotSupported(.Ethereum)
     }
@@ -42,7 +42,8 @@ extension Account {
         DispatchQueue.global().async {
             do {
                 var keychain = try self.eth_keychain()
-                let txData = try tx.rawData(chainId: BigUInt(chainId))
+                let rlp = try tx.rlp(chainId: Quantity(integerLiteral: chainId))
+                let txData = try Account.rlpEncoder.encode(rlp)
                 var signature = try keychain.sign(
                     network: .Ethereum, data: txData, path: self.keyPath(isMetamask)
                 )
@@ -107,4 +108,6 @@ extension Account {
         }
         throw KeychainError.networkIsNotSupported(.Ethereum)
     }
+    
+    private static let rlpEncoder = RLPEncoder()
 }

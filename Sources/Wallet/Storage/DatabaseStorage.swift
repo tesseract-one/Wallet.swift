@@ -22,7 +22,7 @@ import Foundation
 import Serializable
 import SQLite
 
-extension Network: Value {
+extension Network: SQLite.Value {
     public typealias Datatype = Int64
     
     public static var declaredDatatype: String {

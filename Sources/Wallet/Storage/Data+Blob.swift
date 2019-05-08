@@ -27,6 +27,9 @@ extension Data {
     }
     
     var blob: Blob {
-        return withUnsafeBytes { Blob(bytes: $0, length: self.count) }
+        guard count > 0 else {
+            return Blob(bytes: [])
+        }
+        return withUnsafeBytes { Blob(bytes: $0.baseAddress!, length: $0.count) }
     }
 }
