@@ -10,13 +10,13 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (6.8.4):
     - PromiseKit/CorePromise
-  - Serializable.swift (0.1.2)
+  - Serializable.swift (0.1.5)
   - SQLite.swift (0.12.0):
     - SQLite.swift/standard (= 0.12.0)
   - SQLite.swift/standard (0.12.0)
   - SQLiteMigrationManager.swift (0.7.0):
     - SQLite.swift (~> 0.12.0)
-  - Tesseract.EthereumTypes (0.1.6):
+  - Tesseract.EthereumTypes (0.1.8):
     - BigInt (~> 4.0)
     - CryptoSwift (~> 1.0)
     - Serializable.swift (~> 0.1)
@@ -42,10 +42,10 @@ SPEC CHECKSUMS:
   BigInt: 2aad1a9942dc932ec8b84290d2c564a3d76f97ab
   CryptoSwift: d81eeaa59dc5a8d03720fe919a6fd07b51f7439f
   PromiseKit: 51794a832647e7b819336dc2279039ce9f1cc49b
-  Serializable.swift: 30c5cd7c995bc8140afbd0df09b8185d461aa61b
+  Serializable.swift: 0e607d290da30d36e4cebb41e12c9923806331e1
   SQLite.swift: 7cad9db150a03716336e69469ec9559c85aece5b
   SQLiteMigrationManager.swift: 2dd6f760d6e53f666176346436c689e55a608f7a
-  Tesseract.EthereumTypes: cef679ade2b8e866cdc6088bac09da870afd4359
+  Tesseract.EthereumTypes: 78b0b52b471c033159b4d21062b3b42093cdb100
 
 PODFILE CHECKSUM: 3c6e93526c3403b2a16c86e2ee656567db53b132
 

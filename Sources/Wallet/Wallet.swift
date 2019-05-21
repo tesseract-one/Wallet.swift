@@ -37,13 +37,13 @@ public class Wallet {
         return networkSupport != nil ? Set(networkSupport!.keys) : Set()
     }
     
-    public var associatedData: Dictionary<AssociatedKeys, SerializableProtocol>
+    public var associatedData: Dictionary<AssociatedKeys, SerializableValue>
     
     public init(
         id: String, privateData: Data,
         manager: Manager,
         accounts: Array<Account> = [],
-        associatedData: Dictionary<AssociatedKeys, SerializableProtocol> = [:]
+        associatedData: Dictionary<AssociatedKeys, SerializableValue> = [:]
     ) {
         self.id = id
         self.accounts = accounts
@@ -150,7 +150,7 @@ extension Wallet {
         manager: Manager
     ) throws {
         let accounts = try data.accounts.map { try Account(storageData: $0) }
-        var associatedData = Dictionary<AssociatedKeys, SerializableProtocol>()
+        var associatedData = Dictionary<AssociatedKeys, SerializableValue>()
         for (key, val) in data.associatedData {
             associatedData[AssociatedKeys(rawValue: key)] = val
         }
@@ -165,7 +165,7 @@ extension Wallet {
         defer { _accountsLock.unlock() }
         var data = Dictionary<String, SerializableValue>()
         for (key, val) in associatedData {
-            data[key.rawValue] = val.serializable
+            data[key.rawValue] = val
         }
         return StorageData(
             id: id, privateKeys: _privateData,
