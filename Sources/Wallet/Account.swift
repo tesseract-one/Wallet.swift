@@ -55,7 +55,7 @@ public class Account {
         networkSupport = supported
         
         for support in networkSupport {
-            if addresses[support.key] == nil || addresses[support.key]!.count == 0 {
+            if addresses[support.key] == nil || addresses[support.key]!.isEmpty {
                 addresses[support.key] = [try support.value.createFirstAddress(accountIndex: index)]
             }
         }
