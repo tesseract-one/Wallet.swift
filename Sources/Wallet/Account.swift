@@ -25,14 +25,14 @@ public class Account {
     public let id: String
     public let index: UInt32
     public private(set) var addresses: Dictionary<Network, Array<Address>>
-    public var associatedData: Dictionary<AssociatedKeys, SerializableProtocol>
+    public var associatedData: Dictionary<AssociatedKeys, SerializableValue>
     
     public private(set) var networkSupport: Dictionary<Network, NetworkSupport> = [:]
     
     init(
         id: String, index: UInt32,
         addresses: Dictionary<Network, Array<Address>>,
-        associatedData: Dictionary<AssociatedKeys, SerializableProtocol>
+        associatedData: Dictionary<AssociatedKeys, SerializableValue>
     ) {
         self.id = id
         self.index = index
@@ -96,7 +96,7 @@ extension Account {
     }
     
     convenience init(storageData: StorageData) throws {
-        var associatedData = Dictionary<AssociatedKeys, SerializableProtocol>()
+        var associatedData = Dictionary<AssociatedKeys, SerializableValue>()
         for (key, val) in storageData.associatedData {
             associatedData[AssociatedKeys(rawValue: key)] = val
         }
@@ -109,7 +109,7 @@ extension Account {
     var storageData: StorageData {
         var data = Dictionary<String, SerializableValue>()
         for (key, val) in associatedData {
-            data[key.rawValue] = val.serializable
+            data[key.rawValue] = val
         }
         return StorageData(
             id: id, index: index,
