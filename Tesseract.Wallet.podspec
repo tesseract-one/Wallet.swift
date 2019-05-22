@@ -18,6 +18,8 @@ Tesseract DApps Platform multi-network Wallet implementation for Swift
 
   s.module_name = 'Wallet'
 
+  s.swift_versions = ['5.0']
+
   s.subspec 'Core' do |ss|
     ss.script_phase = {
       :name => 'Build Rust Binary',
