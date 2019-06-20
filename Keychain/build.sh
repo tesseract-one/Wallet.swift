@@ -20,7 +20,9 @@ cd "${ROOT_DIR}"/Keychain.rs
 
 cargo lipo --xcode-integ --manifest-path "keychain-c/Cargo.toml" --no-default-features --features "ethereum"
 
-cp -f "${ROOT_DIR}"/Keychain.rs/target/universal/"${OUTPUT_DIR}"/*.a "${ROOT_DIR}"/
+mkdir -p "${CONFIGURATION_BUILD_DIR}"
+
+cp -f "${ROOT_DIR}"/Keychain.rs/target/universal/"${OUTPUT_DIR}"/*.a "${CONFIGURATION_BUILD_DIR}"/
 cp -f "${ROOT_DIR}"/Keychain.rs/keychain-c/include/*.h "${ROOT_DIR}"/
 
 exit 0

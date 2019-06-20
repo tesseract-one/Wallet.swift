@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Tesseract.Wallet'
-  s.version          = '0.1.4'
+  s.version          = '0.1.5'
   s.summary          = 'Tesseract Wallet SDK for Swift'
 
   s.description      = <<-DESC
@@ -29,7 +29,6 @@ Tesseract DApps Platform multi-network Wallet implementation for Swift
 
     ss.pod_target_xcconfig = {
       'SWIFT_INCLUDE_PATHS' => '"${PODS_TARGET_SRCROOT}"',
-      'LIBRARY_SEARCH_PATHS' => '"${PODS_TARGET_SRCROOT}/Keychain"',
       'ENABLE_BITCODE' => 'NO'
     }
 
