@@ -24,12 +24,13 @@ import var Keychain.WrongPassword
 import var Keychain.NotEnoughData
 import var Keychain.CantCalculateSeedSize
 import var Keychain.DataError
-import var Keychain.EntropyGeneratorError
+import var Keychain.SeedIsNotSaved
 import var Keychain.InvalidSeedSize
 import var Keychain.KeyDoesNotExist
 import var Keychain.KeyError
 import var Keychain.KeyPathError
 import var Keychain.MnemonicError
+import var Keychain.KeyAlreadyExist
 
 extension Network {
     init(_ network: Keychain.Network) {
@@ -46,13 +47,14 @@ public enum KeychainError: Swift.Error {
     case notEnoughData(String)
     case cantCalculateSeedSize(String)
     case dataError(String)
-    case entropyGeneratorError(String)
+    case seedIsNotSaved(String)
     case invalidSeedSize(String)
     case keyDoesNotExist(String)
     case keyError(String)
     case keyPathError(String)
     case mnemonicError(String)
     case unknownError(String)
+    case keyAlreadyExist(String)
     case networkIsNotSupported(Network)
     
     init(_ error: ErrorPtr) {
@@ -62,12 +64,13 @@ public enum KeychainError: Swift.Error {
         case NotEnoughData: self = .notEnoughData(message)
         case CantCalculateSeedSize: self = .cantCalculateSeedSize(message)
         case DataError: self = .dataError(message)
-        case EntropyGeneratorError: self = .entropyGeneratorError(message)
+        case SeedIsNotSaved: self = .seedIsNotSaved(message)
         case InvalidSeedSize: self = .invalidSeedSize(message)
         case KeyDoesNotExist: self = .keyDoesNotExist(message)
         case KeyError: self = .keyError(message)
         case KeyPathError: self = .keyPathError(message)
         case MnemonicError: self = .mnemonicError(message)
+        case KeyAlreadyExist: self = .keyAlreadyExist(message)
         default: self = .unknownError(message)
         }
     }

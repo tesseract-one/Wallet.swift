@@ -43,13 +43,13 @@ extension KeychainManagerPtr {
     
     mutating func keychain(
         mnemonic: String, password: String
-    ) throws -> (keychain: KeychainPtr, encrypted: Data) {
+    ) throws -> Data {
         var sself = self
-        var data = try KeychainResult<NewKeychainData>.wrap { data, error in
-            keychain_manager_keychain_from_mnemonic(&sself, mnemonic, password, English, data, error)
+        var data = try KeychainResult<DataPtr>.wrap { data, error in
+            keychain_manager_keychain_data_from_mnemonic(&sself, mnemonic, password, English, data, error)
         }.get()
-        defer { data.data.delete() }
-        return (keychain: data.keychain, encrypted: data.data.data)
+        defer { data.delete() }
+        return data.data
     }
     
     mutating func keychain(data: Data, password: String) throws -> KeychainPtr {

@@ -64,8 +64,7 @@ public class Manager {
     }
     
     public func restoreWalletData(mnemonic: String, password: String) throws -> NewWalletData {
-        var (keychain, encrypted) = try manager.keychain(mnemonic: mnemonic, password: password)
-        defer { keychain.delete() }
+        let encrypted = try manager.keychain(mnemonic: mnemonic, password: password)
         return NewWalletData(mnemonic: mnemonic, encrypted: encrypted)
     }
     
